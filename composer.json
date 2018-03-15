@@ -1,5 +1,5 @@
 {
-    "name": "songcijohn/laravel-getui",
+    "name": "songcijohn/getui",
     "description": "Laravel 5 Getui Package",
     "authors": [
         {
@@ -13,7 +13,7 @@
     "require": {},
     "autoload": {
       "psr-4": {
-        "Earnp\\Getui\\": "src/"
+        "Songcijohn\\Getui\\": "src/"
       }
     }
 }

@@ -1,5 +1,5 @@
 <?php 
-namespace Earnp\Getui;
+namespace Songcijohn\Getui;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;

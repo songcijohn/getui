@@ -1,5 +1,5 @@
 <?php
-namespace Earnp\Getui\Libarys;
+namespace Songcijohn\Getui\Libarys;
 use Exception;
 /**
  * Created by PhpStorm.

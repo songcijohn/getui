@@ -1,5 +1,5 @@
 <?php
-namespace Earnp\Getui\Libarys;
+namespace Songcijohn\Getui\Libarys;
 use Exception;
 /**
  * VERSION 3.3.2.1

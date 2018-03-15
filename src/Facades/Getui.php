@@ -1,6 +1,6 @@
 <?php
 
-namespace Earnp\Getui\Facades;
+namespace Songcijohn\Getui\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
