@@ -260,7 +260,7 @@ class Getui
                 $alertmsg->titleLocArgs=array("TitleLocArg");
 
                 $apn->alertMsg=$alertmsg;
-                $apn->badge=7;
+                $apn->badge=1;
                 $apn->sound=""; 
                 $apn->add_customMsg("payload","payload");
                 $apn->contentAvailable=1;
