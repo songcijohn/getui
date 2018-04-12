@@ -24,15 +24,15 @@ class Getui
     // 请求构造
     public static function IGtPush()
     {
-        if (Config::get("getui.".self::$appName.".HTTPS")) return new IGtPush(Config::get("getui.".self::$appName.".HOST")[1],Config::get("getui.".self::$appName.".APPKEY"),Config::get("getui.".self::$appName.".MASTERSECRET"),Config::get("getui.".self::$appName.".HTTPS"));
-        return new IGtPush(Config::get("getui.".self::$appName.".HOST")[0],Config::get("getui.".self::$appName.".APPKEY"),Config::get("getui.".self::$appName.".MASTERSECRET"),Config::get("getui.".self::$appName.".HTTPS"));
+        if (Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".HTTPS")) return new IGtPush(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".HOST")[1],Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY"),Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".MASTERSECRET"),Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".HTTPS"));
+        return new IGtPush(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".HOST")[0],Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY"),Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".MASTERSECRET"),Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".HTTPS"));
     }
 
     // 大数据综合分析用户得到的标签:即用户画像
     public static function getPersonaTags()
     {
         $igt = self::IGtPush();
-        $ret = $igt->getPersonaTags(Config::get("getui.".self::$appName.".APPID"));
+        $ret = $igt->getPersonaTags(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));
         return $ret;
     }
 
@@ -46,15 +46,15 @@ class Getui
     // 获取用户状态
     public static function getUserStatus($CID="") {
         $igt = self::IGtPush();
-        $CID = empty($CID) ? Config::get("getui.".self::$appName.".CID") :$CID;
-        $rep = $igt->getClientIdStatus(Config::get("getui.".self::$appName.".APPID"),$CID);
+        $CID = empty($CID) ? Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".CID") :$CID;
+        $rep = $igt->getClientIdStatus(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"),$CID);
         return $rep;
     }
 
     // 通过标签获取用户总数
     public static function getUserCountByTags($tagList) {
         $igt = self::IGtPush();
-        $ret = $igt->getUserCountByTags(Config::get("getui.".self::$appName.".APPID"), $tagList);
+        $ret = $igt->getUserCountByTags(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"), $tagList);
         return $ret;
     }
 
@@ -68,14 +68,14 @@ class Getui
     // 获取单日用户数据
     public static function getUserDataByDate($date){
         $igt = self::IGtPush();
-        $ret = $igt->queryAppUserDataByDate(Config::get("getui.".self::$appName.".APPID"),$date);
+        $ret = $igt->queryAppUserDataByDate(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"),$date);
         return $ret;
     }
 
     // 获取单日推送数据
     public static function getPushDataByDate($date){
         $igt = self::IGtPush();
-        $ret = $igt->queryAppPushDataByDate(Config::get("getui.".self::$appName.".APPID"),$date);
+        $ret = $igt->queryAppPushDataByDate(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"),$date);
         return $ret;
     }
 
@@ -106,10 +106,10 @@ class Getui
         $message->set_data($template);//设置推送消息类型
         //$message->set_PushNetWorkType(0);//设置是否根据WIFI推送消息，2为4G/3G/2G，1为wifi推送，0为不限制推送
         // 消息推送方式
-        $CID = empty($CID) ? Config::get("getui.".self::$appName.".CID") : $CID;
+        $CID = empty($CID) ? Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".CID") : $CID;
         //接收方
         $target = new \IGtTarget();
-        $target->set_appId(Config::get("getui.".self::$appName.".APPID"));
+        $target->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));
         $target->set_clientId($CID);
         // $target->set_alias(Alias);
         try {
@@ -151,16 +151,16 @@ class Getui
         $contentId = $igt->getContentId($message);
         // dd($message);
 
-        $CID = empty($CID) ? Config::get("getui.".self::$appName.".CID") : $CID;
+        $CID = empty($CID) ? Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".CID") : $CID;
         //接收方1
         $target1 = new \IGtTarget();
-        $target1->set_appId(Config::get("getui.".self::$appName.".APPID"));
+        $target1->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));
         $target1->set_clientId($CID);
         //$target1->set_alias(Alias1);
         //接收方2
         // $target2 = new \IGtTarget();
-        // $target2->set_appId(Config::get("getui.".self::$appName.".APPID"));
-        // $target2->set_clientId(Config::get("getui.".self::$appName.".CID"));
+        // $target2->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));
+        // $target2->set_clientId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".CID"));
         //$target2->set_alias(Alias2);
         $targetList[0] = $target1;
         // $targetList[1] = $target2;
@@ -193,7 +193,7 @@ class Getui
         $message->set_offlineExpireTime(10 * 60 * 1000);//离线时间单位为毫秒，例，两个小时离线为3600*1000*2
         $message->set_data($template);
 
-        $appIdList=array(Config::get("getui.".self::$appName.".APPID"));
+        $appIdList=array(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));
         $phoneTypeList=$choice["phoneTypeList"];
         $provinceList=$choice["provinceList"];
         $tagList=$choice["tagList"];
@@ -217,8 +217,8 @@ class Getui
     // 透传数据构造
     public static function IGtTransmissionTemplate($data,$config){
             $template = new \IGtTransmissionTemplate();
-            $template->set_appId(Config::get("getui.".self::$appName.".APPID"));//应用appid 
-            $template->set_appkey(Config::get("getui.".self::$appName.".APPKEY"));//应用appkey
+            $template->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));//应用appid 
+            $template->set_appkey(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY"));//应用appkey
             $template->set_transmissionType(1);//透传消息类型 
             $template->set_transmissionContent($data);//透传内容
             // $template->set_duration(BEGINTIME,ENDTIME); //设置ANDROID客户端在此时间区间内展示消息
@@ -280,8 +280,8 @@ class Getui
         $url = empty($config["url"]) ? "" : $config["url"];
         // 数据
         $template = new \IGtNotificationTemplate();
-        $template->set_appId(Config::get("getui.".self::$appName.".APPID"));//应用appid
-        $template->set_appkey(Config::get("getui.".self::$appName.".APPKEY"));//应用appkey
+        $template->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));//应用appid
+        $template->set_appkey(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY"));//应用appkey
         $template->set_transmissionType(1); //透传消息类型
         $template->set_transmissionContent($data); //透传内容
         $template->set_title($title); //通知栏标题
@@ -304,8 +304,8 @@ class Getui
         $title = empty($config["title"]) ? "测试标题" : $config["title"];
         $url = empty($config["url"]) ? "" : $config["url"];
         $template = new \IGtLinkTemplate();
-        $template ->set_appId(Config::get("getui.".self::$appName.".APPID")); //应用appid
-        $template ->set_appkey(Config::get("getui.".self::$appName.".APPKEY")); //应用appkey
+        $template ->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID")); //应用appid
+        $template ->set_appkey(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY")); //应用appkey
         $template ->set_title($title); //通知栏标题
         $template ->set_text($body); //通知栏内容
         $template->set_logo($logo); //通知栏logo
@@ -328,8 +328,8 @@ class Getui
         $loadurl = empty($config["loadurl"]) ? "" : $config["loadUrl"];
 
         $template = new \IGtNotyPopLoadTemplate();
-        $template ->set_appId(Config::get("getui.".self::$appName.".APPID")); //应用appid
-        $template ->set_appkey(Config::get("getui.".self::$appName.".APPKEY")); //应用appkey
+        $template ->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID")); //应用appid
+        $template ->set_appkey(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY")); //应用appkey
         if ($config["type"]=="notice") {
             //通知栏
             $template ->set_notyTitle($title); //通知栏标题
