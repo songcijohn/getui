@@ -219,7 +219,7 @@ class Getui
             $template = new \IGtTransmissionTemplate();
             $template->set_appId(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPID"));//应用appid 
             $template->set_appkey(Config::get("getui_".env('APP_ENV','local').'.'.self::$appName.".APPKEY"));//应用appkey
-            $template->set_transmissionType(1);//透传消息类型 
+            $template->set_transmissionType(0);//透传消息类型,设置为1的话app会自动启动 
             $template->set_transmissionContent($data);//透传内容
             // $template->set_duration(BEGINTIME,ENDTIME); //设置ANDROID客户端在此时间区间内展示消息
 
